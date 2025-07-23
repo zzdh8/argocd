@@ -1,15 +1,14 @@
+# services/user-service/templates/service.yaml
 apiVersion: v1
 kind: Service
 metadata:
   name: {{ include "msa-auth.fullname" . }}
   labels:
-    app: {{ include "msa-auth.name" . }}
+    {{- include "msa-auth.labels" . | nindent 4 }}
 spec:
   type: {{ .Values.service.type }}
-  selector:
-    app: {{ include "msa-auth.name" . }}
   ports:
     - port: {{ .Values.service.port }}
-      targetPort: {{ .Values.containerPort }}
+      targetPort: {{ .Values.service.targetPort }}
       protocol: TCP
       name: http

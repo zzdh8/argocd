@@ -1,0 +1,27 @@
+# {{- if .Values.services.msa-auth.enabled }}
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: msa-broadcaster
+#   namespace: argocd
+#   finalizers:
+#     - resources-finalizer.argocd.argoproj.io
+# spec:
+#   project: default
+#   source:
+#     repoURL: {{ .Values.services.msa-broadcaster.repoURL }}
+#     path: {{ .Values.services.msa-broadcaster.path }}
+#     targetRevision: {{ .Values.services.msa-broadcaster.targetRevision }}
+#     helm:
+#       valueFiles:
+#         - values.yaml
+#   destination:
+#     server: {{ .Values.spec.destination.server }}
+#     namespace: msa-broadcaster
+#   syncPolicy:
+#     automated:
+#       prune: true
+#       selfHeal: true
+#     syncOptions:
+#       - CreateNamespace=true
+# {{- end }}

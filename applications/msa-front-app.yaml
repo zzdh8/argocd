@@ -1,0 +1,27 @@
+# {{- if .Values.services.msa-auth.enabled }}
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: msa-front
+#   namespace: argocd
+#   finalizers:
+#     - resources-finalizer.argocd.argoproj.io
+# spec:
+#   project: default
+#   source:
+#     repoURL: {{ .Values.services.msa-front.repoURL }}
+#     path: {{ .Values.services.msa-front.path }}
+#     targetRevision: {{ .Values.services.msa-front.targetRevision }}
+#     helm:
+#       valueFiles:
+#         - values.yaml
+#   destination:
+#     server: {{ .Values.spec.destination.server }}
+#     namespace: msa-front
+#   syncPolicy:
+#     automated:
+#       prune: true
+#       selfHeal: true
+#     syncOptions:
+#       - CreateNamespace=true
+# {{- end }}

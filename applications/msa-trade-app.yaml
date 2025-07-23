@@ -1,0 +1,27 @@
+# {{- if .Values.services.msa-auth.enabled }}
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: msa-trade
+#   namespace: argocd
+#   finalizers:
+#     - resources-finalizer.argocd.argoproj.io
+# spec:
+#   project: default
+#   source:
+#     repoURL: {{ .Values.services.msa-trade.repoURL }}
+#     path: {{ .Values.services.msa-trade.path }}
+#     targetRevision: {{ .Values.services.msa-trade.targetRevision }}
+#     helm:
+#       valueFiles:
+#         - values.yaml
+#   destination:
+#     server: {{ .Values.spec.destination.server }}
+#     namespace: msa-trade
+#   syncPolicy:
+#     automated:
+#       prune: true
+#       selfHeal: true
+#     syncOptions:
+#       - CreateNamespace=true
+# {{- end }}

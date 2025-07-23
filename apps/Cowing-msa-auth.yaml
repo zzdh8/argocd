@@ -8,9 +8,15 @@ spec:
   source:
     repoURL: https://github.com/zzdh8/argocd.git
     targetRevision: main
-    path: argocd/apps
-    directory:
-      recurse: true
+    path: argocd/apps/chart
+    helm:
+      valueFiles:
+        - values.yaml
+      parameters:
+        - name: image.repository
+          value: ghcr.io/coinwing/msa-auth
+        - name: image.tag
+          value: latest
   destination:
     server: https://kubernetes.default.svc 
     namespace: argocd

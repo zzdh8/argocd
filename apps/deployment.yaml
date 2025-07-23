@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: msa-auth-dep
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: msa-auth
+  template:
+    metadata:
+      labels:
+        app: msa-auth
+    spec:
+      containers:
+        - name: msa-auth
+          image: ghcr.io/cowing/cowing-msa-auth:latest
+          ports:
+            - containerPort: 8080

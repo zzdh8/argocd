@@ -2,9 +2,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "msa-auth.fullname" . }}
+  name: msa-auth
   labels:
-    {{- include "msa-auth.labels" . | nindent 4 }}
+    app: msa-auth
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
@@ -12,7 +12,7 @@ spec:
   template:
     metadata:
       labels:
-        app: {{ include "msa-auth.fullname" . }}
+        app: msa-auth
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:

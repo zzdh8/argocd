@@ -29,3 +29,11 @@ services:
     repoURL: https://github.com/CoinWing/Cowing-msa-trading
     path: services/msa-trade
     targetRevision: main
+
+common:
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  valueFiles:
+    - values.yaml
+  syncOptions:
+    - CreateNamespace=true

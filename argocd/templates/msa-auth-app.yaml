@@ -4,8 +4,7 @@ kind: Application
 metadata:
   name: msa-auth
   namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
+  finalizers:finalizers: {{- .Values.common.finalizers | toYaml | nindent 4 }}
 spec:
   project: default
   source:
@@ -13,8 +12,7 @@ spec:
     path: {{ .Values.services.msa-auth.path }}
     targetRevision: {{ .Values.services.msa-auth.targetRevision }}
     helm:
-      valueFiles:
-        - values.yaml
+      valueFiles: {{- .Values.common.valueFiles | toYaml | nindent 8 }}
   destination:
     server: https://kubernetes.default.svc
     namespace: msa-auth
@@ -22,6 +20,5 @@ spec:
     automated:
       prune: true
       selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
+    syncOptions: {{- .Values.common.syncOptions | toYaml | nindent 6 }}
 {{- end }}

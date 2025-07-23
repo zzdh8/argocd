@@ -9,7 +9,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/zzdh8/argocd
-    path: kustomize/msa-auth/overlays
+    path: kustomize/msa-auth/base
     targetRevision: main
   destination:
     server: https://kubernetes.default.svc

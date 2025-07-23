@@ -8,7 +8,9 @@ spec:
   source:
     repoURL: https://github.com/zzdh8/argocd.git
     targetRevision: main
-    path: chart
+    path: .
+    directory:
+      recurse: true
     helm:
       valueFiles:
         - values.yaml

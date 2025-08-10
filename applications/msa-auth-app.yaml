@@ -8,12 +8,12 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/zzdh8/argocd
-    path: kustomize/msa-auth/base
+    repoURL: https://github.com/CoinWing/Infrastructure
+    path: kustomize/msa-auth
     targetRevision: main
   destination:
     server: https://kubernetes.default.svc
-    namespace: default
+    namespace: cowing-prod
   syncPolicy:
     automated:
       prune: true

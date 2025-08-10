@@ -1,27 +1,22 @@
-# {{- if .Values.services.msa-auth.enabled }}
-# apiVersion: argoproj.io/v1alpha1
-# kind: Application
-# metadata:
-#   name: msa-trade
-#   namespace: argocd
-#   finalizers:
-#     - resources-finalizer.argocd.argoproj.io
-# spec:
-#   project: default
-#   source:
-#     repoURL: {{ .Values.services.msa-trade.repoURL }}
-#     path: {{ .Values.services.msa-trade.path }}
-#     targetRevision: {{ .Values.services.msa-trade.targetRevision }}
-#     helm:
-#       valueFiles:
-#         - values.yaml
-#   destination:
-#     server: {{ .Values.spec.destination.server }}
-#     namespace: msa-trade
-#   syncPolicy:
-#     automated:
-#       prune: true
-#       selfHeal: true
-#     syncOptions:
-#       - CreateNamespace=true
-# {{- end }}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: msa-trade
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/CoinWing/Infrastructure
+    path: kustomize/msa-trade
+    targetRevision: main
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: cowing-prod
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

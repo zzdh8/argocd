@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: https://github.com/zzdh8/argocd
     path: kustomize/msa-auth
-    targetRevision: main
+    targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc
     namespace: cowing-prod

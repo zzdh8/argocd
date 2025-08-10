@@ -8,7 +8,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/CoinWing/Infrastructure
+    repoURL: https://github.com/zzdh8/argocd
     path: kustomize/msa-broadcaster
     targetRevision: main
   destination:
